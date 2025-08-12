@@ -14,4 +14,3 @@ describe("getAPIKey", () => {
     expect(getAPIKey({ authorization: "ApiKey abc123" })).toBe("abc123");
   });
 });
-
