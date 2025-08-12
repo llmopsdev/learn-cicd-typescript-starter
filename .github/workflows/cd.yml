@@ -24,7 +24,13 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Setup Gcloud2
-        run: gcloud builds submit --tag us-central1-docker.pkg.dev/notely-468822/notely-ar-repo/notely:latest
-        
+      - id: 'auth'
+        uses: 'google-github-actions/auth@v2'
+        with:
+          credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
 
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v2'
+
+      - name: 'Setup Gcloud2'
+        run: gcloud builds submit --tag us-central1-docker.pkg.dev/notely-468822/notely-ar-repo/notely:latest
